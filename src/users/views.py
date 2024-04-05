@@ -10,6 +10,7 @@ from . import utils
 
 
 class UserCreateView(generics.GenericAPIView):
+    ''' Create a user.'''
     serializer_class = UserCreateSerializer
 
     def post(self, request):
@@ -22,6 +23,7 @@ class UserCreateView(generics.GenericAPIView):
 
 
 class UserViewSet(utils.ListRetrieveUpdateDestroyViewSet):
+    ''' List all users, retrieve, update or delete a single user. '''
     queryset = User.objects.all()
     serializer_class = UserSerializer
     
@@ -29,11 +31,12 @@ class UserViewSet(utils.ListRetrieveUpdateDestroyViewSet):
         if self.action in ('destroy', 'update', 'partial_update') :
             permission_classes = [IsAuthenticated, IsUserOwner]
         else:
-            permission_classes = [permissions.IsAuthenticated]  # For other actions
+            permission_classes = [permissions.IsAuthenticated]  # viewing list of all users is restricted to authenticated users
 
         return [permission() for permission in permission_classes]
        
     def destroy(self, request, *args, **kwargs):
+        ''' Delete a user. Only a user can delete their account.'''
         instance = self.get_object()
 
         if instance.email != request.user.email:
@@ -47,6 +50,7 @@ class UserViewSet(utils.ListRetrieveUpdateDestroyViewSet):
     
 
 class LoginAPIView(generics.GenericAPIView):
+    ''' Login view.'''
     serializer_class = LoginSerializer
 
     def post(self, request):
