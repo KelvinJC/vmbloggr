@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
     "serialiser for all http methods except POST"
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'phone_n'] 
+        fields = ['id', 'username', 'email', 'phone_number'] 
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -18,7 +18,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ['email', 'username', 'password', 'phone_n']
+        fields = ['email', 'username', 'password', 'phone_number']
         extra_kwargs = {
             "email": {
                 "required": True,
@@ -29,7 +29,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
                     )
                 ]
             },
-            "phone_n": {
+            "phone_number": {
                 "required": True,
                 "allow_blank": False,
                 "validators": [
