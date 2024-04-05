@@ -1,6 +1,7 @@
 from rest_framework import generics, status, permissions, viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import User
 from .serializers import LoginSerializer, UserSerializer, UserCreateSerializer
@@ -23,13 +24,12 @@ class UserCreateView(generics.GenericAPIView):
 class UserViewSet(utils.ListRetrieveUpdateDestroyViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    # permission_classes = [IsAuthenticated, IsUserOwner]
-
+    
     def get_permissions(self):
         if self.action in ('destroy', 'update', 'partial_update') :
             permission_classes = [IsAuthenticated, IsUserOwner]
         else:
-            permission_classes = [permissions.AllowAny]  # For other actions
+            permission_classes = [permissions.IsAuthenticated]  # For other actions
 
         return [permission() for permission in permission_classes]
        
@@ -48,7 +48,7 @@ class UserViewSet(utils.ListRetrieveUpdateDestroyViewSet):
 
 class LoginAPIView(generics.GenericAPIView):
     serializer_class = LoginSerializer
-    
+
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
