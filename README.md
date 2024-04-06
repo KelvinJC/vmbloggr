@@ -61,7 +61,7 @@ You can view the full documentation of the API as well as interact with all its 
 just as you would on Postman or any other API client.
 
 <br>
-![]zdoc_images/api_screenshot.png
+![](zdoc_images/api_screenshot.png)
 
 
 ### Authentication and Authorisation.
@@ -114,4 +114,4 @@ python manage.py test
 
 ### System design
 
-![]zdoc_images/api_architecture.png
+![](zdoc_images/api_architecture.png)
