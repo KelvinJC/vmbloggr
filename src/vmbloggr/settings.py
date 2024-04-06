@@ -102,7 +102,7 @@ DATABASES_ALL = {
     },
 }
 
-DATABASES = {"default": DATABASES_ALL[DB_POSTGRESQL]}
+DATABASES = {"default": DATABASES_ALL[os.environ.get(DB_POSTGRESQL, DB_SQLITE)]}
 
 
 
