@@ -62,7 +62,7 @@ You can view the documentation of the API as well as interact with its endpoints
 just as you would on Postman or any other API client.
 
 <br>
-screenshot of Swagger docs here !!
+![]zdoc_images/api_screenshot.png
 
 
 ### Authentication and Authorisation.
