@@ -137,7 +137,6 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
-
 }
 
 SIMPLE_JWT = {
@@ -145,9 +144,20 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
+
 SWAGGER_SETTINGS = {
-   'USE_SESSION_AUTH': False
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': 'JWT token. Prefix the token with "Bearer "',
+        }
+    },
+    'LOGIN_URL': '/api/login',
+    'LOGOUT_URL': '/api/logout',
 }
+
 
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/api/login/'
