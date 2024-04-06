@@ -4,4 +4,6 @@ venv/
 .env
 proj*
 migrations/
+*.odp
+
 
