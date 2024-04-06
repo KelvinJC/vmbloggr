@@ -154,8 +154,7 @@ SWAGGER_SETTINGS = {
             'description': 'JWT token. Prefix the token with "Bearer "',
         }
     },
-    'LOGIN_URL': '/api/login',
-    'LOGOUT_URL': '/api/logout',
+    'USE_SESSION_AUTH': False,
 }
 
 
