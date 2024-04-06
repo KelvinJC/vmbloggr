@@ -5,15 +5,16 @@ from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
-    "serialiser for all http methods except POST"
+    "Serialiser for all HTTP methods related to the user except POST."
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'phone_number'] 
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
-    "serialiser specific to creating a new user i.e. http POST method"
+    "Serialiser specific to creating a new user i.e. HTTP POST method."
 
+    username = serializers.CharField(max_length=20, min_length=6)
     password = serializers.CharField(max_length=68, min_length=6, write_only=True)
     
     class Meta:
@@ -25,7 +26,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
                 "allow_blank": False,
                 "validators": [
                     validators.UniqueValidator(
-                        User.objects.all(), "A user with that email already exists"
+                        User.objects.all(), "A user with that email already exists."
                     )
                 ]
             },
@@ -34,25 +35,45 @@ class UserCreateSerializer(serializers.ModelSerializer):
                 "allow_blank": False,
                 "validators": [
                     validators.UniqueValidator(
-                        User.objects.all(), "A user with that phone number already exists"
+                        User.objects.all(), "A user with that phone number already exists."
                     )
                 ]
-
-            }
+            },
+            "username": {
+                "required": True,
+                "allow_blank": False,
+                "validators": [
+                    validators.UniqueValidator(
+                        User.objects.all(), "A user with that username already exists."
+                    ),
+                ]
+            },   
         }
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
 
+    def validate(self, attrs):
+        email = attrs.get('email', '')
+        username = attrs.get('username', '')
+        if not username.isalnum():
+            raise serializers.ValidationError(self.default_error_messages)
+        return attrs
+    
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
+
+
 
 class LoginSerializer(serializers.ModelSerializer):
+    ''' Serialiser to handle the login endpoint.'''
     password = serializers.CharField(max_length=68, min_length=6,write_only=True)
     username = serializers.CharField(max_length=255, min_length=3)
     tokens = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ['password','username','tokens']
+        fields = ['password', 'username', 'tokens']
 
     def get_tokens(self, obj):
         user = User.objects.get(username=obj['username'])
@@ -70,9 +91,9 @@ class LoginSerializer(serializers.ModelSerializer):
         )
 
         if not user:
-            raise AuthenticationFailed('Invalid credentials, try again')
+            raise AuthenticationFailed('Invalid credentials, try again.')
         if not user.is_active:
-            raise AuthenticationFailed('User disabled, contact admin')
+            raise AuthenticationFailed('User disabled, contact admin.')
         return {
             'email': user.email,
             'username': user.username,
