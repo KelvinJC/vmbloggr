@@ -75,7 +75,7 @@ vmblogger relies on Swagger for documentation which can be accessed at
 You can view the full documentation of the API as well as interact with all its endpoints (even to authenticate a user!) <br>
 just as you would on Postman or any other API client.
 
-<br>
+
 ![](zdoc_images/api_screenshot.png)
 
 
