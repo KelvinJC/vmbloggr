@@ -41,7 +41,7 @@ cd vmbloggr
 ```
 
 <br><br>
-To begin using the application. Initiate the server by running the following command
+To begin using the application. Initiate the server by running the following command to build and run the containers in one go
 <br><br>
 ```
 docker compose up --build 
@@ -72,11 +72,14 @@ JWT authentication ensures that users are properly authenticated.
 This serves to ensure that only authors can update or delete their posts
 
 ### Database choice
-This project makes use of a Postgres database which is within a docker container 
+This project makes use of a Postgres database which is within a separate docker container 
 for persistent storage of blog posts as well as user information. 
 
 If you require a different database, customisation is possible via the settings.py file. <br><br>
 
+NOTE: Database credentials should not be stored in code repositories! <br>
+They belong in .env files which should be kept secret. 
+This is a unique case to facilitate your ease in spinning up the app.
 
 ### Django Admin User
 This step is not critical to the usage of the app but if you are familiar with the Django Admin UI you can make use of an already created superuser 
