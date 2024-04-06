@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rp^@v^co(f$!n-!j0t(&4a!e*l723k+@b9$%f8i(fr^2=_r_mw'
-
+SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG")
+
 
 ALLOWED_HOSTS = []
 
@@ -102,7 +102,7 @@ DATABASES_ALL = {
     },
 }
 
-DATABASES = {"default": DATABASES_ALL[DB_POSTGRESQL]}
+DATABASES = {"default": DATABASES_ALL[os.environ.get("DJANGO_DB", DB_SQLITE)]}
 
 
 
