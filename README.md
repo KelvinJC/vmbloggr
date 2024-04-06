@@ -52,7 +52,7 @@ To prevent clashes on port 8000, make sure no other Django app is running on loc
 
 
 ### Documentation
-While the default Django DRF doc is available, the preference here is for Swagger. <br>
+While the default Django DRF documentation is available, the preference here is for Swagger docs. <br>
 vmblogger relies on Swagger for documentation which can be accessed at
 
 ```http://127.0.0.1:8000/api/docs/swagger``` 
@@ -116,6 +116,7 @@ python manage.py test
 The system consists of an NGINX web server to handle HTTP requests from a client browser. It in turn forwards these requests to the Django application server through an intermediary Gunicorn web server gateway interface.
 The persistence layer is a Postgres database. This handles data query requests from the application server.
 
+The gateway interface and application server reside within the same Docker container while the database and web server rest in separate Docker containers. Since all services share a single Docker Compose configuration file, they share the same network within a host OS.
 
 ![](zdoc_images/api_architecture.png)
 
