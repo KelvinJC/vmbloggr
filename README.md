@@ -77,8 +77,9 @@ for persistent storage of blog posts as well as user information.
 
 If you require a different database, customisation is possible via the settings.py file. <br><br>
 
-NOTE: Database credentials should not be stored in code repositories! <br>
-They belong in .env files which should be kept secret. 
+#### NOTE: 
+Database credentials should not be stored in code repositories! <br>
+They belong in .env files which should be kept secret and remain local to the appropriate context (e.g. dev, test or prod). 
 This is a unique case to facilitate your ease in spinning up the app.
 
 ### Django Admin User
