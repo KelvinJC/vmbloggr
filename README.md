@@ -20,13 +20,6 @@ Within the project, the three apps worthy of note are:
 
 
 ## Getting Started
-* Create a new directory where you would like this project stored. e.g vm-Kaizen
-
-* Change into that new directory
-
-```
-cd vm-Kaizen
-```
 
 * Get a copy of the source code of this project into your local repository.
 
@@ -45,20 +38,26 @@ cd vmbloggr
 ```
 docker compose up --build 
 ```
-(adding the extra flag "-f docker-compose.yml" works but since we are using a default file name that is unnecessary)
+#### Note:
+Adding the extra flag `-f docker-compose.yml` to the command works as well 
+but since the docker-compose file is bearing the default name - "docker-compose.yml" 
+that is no longer unnecessary
 
 
 ### Running the server:
-By default, Django apps listen on ```http://127.0.0.1:8000``` so once the server is running, 
-that is the link to copy and paste into your preferred browser.<br>
+By default, Django apps listen on port 8000 so once the server is running, 
+copy and paste ```http://127.0.0.1:8000/api``` into your preferred browser.<br>
 
 To prevent clashes on port 8000, make sure no other Django app is running on localhost.
 
 
 ### Documentation
 While the default Django DRF doc is available, the preference here is for Swagger. <br>
-vmblogger relies on Swagger for documentation which can be accessed at ```http://127.0.0.1:8000/api/docs/swagger``` <br>
-You can view the documentation of the API as well as interact with its endpoints (even authenticate a user!) <br>
+vmblogger relies on Swagger for documentation which can be accessed at
+
+```http://127.0.0.1:8000/api/docs/swagger``` 
+
+You can view the full documentation of the API as well as interact with all its endpoints (even to authenticate a user!) <br>
 just as you would on Postman or any other API client.
 
 <br>
@@ -76,10 +75,6 @@ for persistent storage of blog posts as well as user information.
 
 If you require a different database, customisation is possible via the settings.py file. <br><br>
 
-#### NOTE: 
-Database credentials should not be stored in code repositories! <br>
-They belong in .env files which should be kept secret and remain local to the appropriate context (e.g. dev, test or prod). 
-This is a unique case to facilitate your ease in spinning up the app.
 
 ### Django Admin User
 This step is not critical to the usage of the app but if you are familiar with the Django Admin UI you can make use of an already created superuser 
@@ -91,14 +86,27 @@ password = Admin
 
 To access the Django Admin UI visit ```http://127.0.0.1:8000/admin```
 
+#### Credentials and .env files: 
+No credentials should be stored in code repositories! <br>
+They belong in .env files which must be kept secret and remain local to the appropriate context (e.g. dev, test or prod). 
+
+The admin credentials above as well as the .env file in this project were committed to the repo 
+in this unique case to facilitate your ease in spinning up the dockerised app.
+
+
 ### Automated tests. 
 Tests are pretty important. To aid test-driven development, ```vmbloggr``` comes with a test suite in each app. <br>
-To run all tests, navigate to the src directory and run the commands to initiate django tests<br>
+Tests have been written for each endpoint of the API.
+To run all tests, at the moment, it is preferable to run the project locally i.e without starting the docker containers.
+
+
+1. Navigate to the ```src``` directory
 
 ```
 cd src
 ```
-then 
+
+2. Run the relevant django management command to initiate all current django tests<br>
 
 ```
 python manage.py test
@@ -106,4 +114,4 @@ python manage.py test
 
 ### System design
 
-screenshots go here!
+![]zdoc_images/api_architecture.png
