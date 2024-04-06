@@ -43,21 +43,6 @@ Adding the extra flag `-f docker-compose.yml` to the command works as well
 but since the docker-compose file is bearing the default name - "docker-compose.yml" 
 that is no longer unnecessary
 
-#### POSSIBLE ERROR ON WINDOWS OS: Container exits right after build 
-This can be fixed by taking the following steps:
-1. Open the project in VSCode, navigate to the shell script at this path
-
-``` vmbloggr/docker/vmbloggr/server-entry.sh ```
-
-2. If the file ending indicator on the bottom right displays CRLF, click on it and switch to LF. (Look at the screenshot below.)
-
-3. Then rerun the docker compose up --build command at the project's root directory.
-(It is a file ending error associated with pushing shell scripts to a git repo from a Windows OS)
-
-![](zdoc_images/shell-script-snapshot.png)
-
-
-
 
 ### Running the server:
 By default, Django apps listen on port 8000 so once the server is running, 
@@ -128,5 +113,24 @@ python manage.py test
 ```
 
 ### System design
+The system consists of an NGINX web server to handle HTTP requests from a client browser. It in turn forwards these requests to the Django application server through an intermediary Gunicorn web server gateway interface.
+The persistence layer is a Postgres database. This handles data query requests from the application server.
+
 
 ![](zdoc_images/api_architecture.png)
+
+
+
+#### POSSIBLE ERROR ON WINDOWS OS: Container exits right after build 
+This can be fixed by taking the following steps:
+1. Open the project in VSCode, navigate to the shell script at this path
+
+``` vmbloggr/docker/vmbloggr/server-entry.sh ```
+
+2. If the file ending indicator on the bottom right displays CRLF, click on it and switch to LF. (Look at the screenshot below.)
+
+3. Then rerun the docker compose up --build command at the project's root directory.
+(It is a file ending error associated with pushing shell scripts to a git repo from a Windows OS)
+
+![](zdoc_images/shell-script-snapshot.png)
+
