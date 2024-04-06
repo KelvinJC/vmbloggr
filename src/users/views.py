@@ -1,11 +1,10 @@
 from rest_framework import generics, status, permissions, viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import User
 from .serializers import LoginSerializer, UserSerializer, UserCreateSerializer
-from .permissions import IsUserOwner
+from .permissions import IsUser
 from . import utils 
 
 
@@ -23,20 +22,20 @@ class UserCreateView(generics.GenericAPIView):
 
 
 class UserViewSet(utils.ListRetrieveUpdateDestroyViewSet):
-    ''' List all users, retrieve, update or delete a single user. '''
+    '''List all users, retrieve, update or delete a single user.'''
     queryset = User.objects.all()
     serializer_class = UserSerializer
     
     def get_permissions(self):
         if self.action in ('destroy', 'update', 'partial_update') :
-            permission_classes = [IsAuthenticated, IsUserOwner]
+            permission_classes = [IsAuthenticated, IsUser]
         else:
-            permission_classes = [permissions.IsAuthenticated]  # viewing list of all users is restricted to authenticated users
+            permission_classes = [IsAuthenticated]  # viewing list of all users is restricted to authenticated users
 
         return [permission() for permission in permission_classes]
        
     def destroy(self, request, *args, **kwargs):
-        ''' Delete a user. Only a user can delete their account.'''
+        '''Delete a user. Only a user can delete their account.'''
         instance = self.get_object()
 
         if instance.email != request.user.email:
@@ -57,7 +56,4 @@ class LoginAPIView(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-
 
