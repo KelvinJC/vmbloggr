@@ -2,10 +2,8 @@
 
 ## A blogger's delight
 
-build a backend server that serves queries and mutations for a simple blog reader. 
-The endpoints should allow users to:
 
-vmbloggr is an API that serves as the backend server for a simple blog reader. It allows users to 
+vmbloggr is an API that serves as the backend server for a simple blog reader app. It allows users to 
 Register and login to the API
 Create blog posts
 Get a list of blog posts from the database
@@ -13,11 +11,6 @@ View the details of each post
 Update existing blog posts
 Delete existing blog posts
 
-
-### Authentication and Authorisation.
-
-JWT authentication ensures that users are properly authenticated. 
-This serves to ensure that only authors can update or delete their posts
 
 ### Project specifications
 Within the project, the three apps worthy of note are:
@@ -71,6 +64,12 @@ just as you would on Postman or any other API client.
 
 <br>
 screenshot of Swagger docs here !!
+
+
+### Authentication and Authorisation.
+
+JWT authentication ensures that users are properly authenticated. 
+This serves to ensure that only authors can update or delete their posts
 
 ### Database choice
 This project makes use of a Postgres database which is within a docker container 
