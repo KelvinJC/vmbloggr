@@ -34,19 +34,18 @@ cd vm-Kaizen
 git clone https://github.com/KelvinJC/vmbloggr.git
 ```
 
-* The code will be packaged in a directory named Chorestack so change into that directory
+* The code will be packaged in a directory named vmbloggr so change into that directory
 
 ```
 cd vmbloggr
 ```
 
-<br><br>
-To begin using the application. Initiate the server by running the following command to build and run the containers in one go
-<br><br>
+* To begin using the application, initiate the server by running the following command to build and run the containers in one go
+
 ```
 docker compose up --build 
 ```
-(adding the extra flag "-f docker-compose.yml" works but since we are using a default file name this is unnecessary)
+(adding the extra flag "-f docker-compose.yml" works but since we are using a default file name that is unnecessary)
 
 
 ### Running the server:
