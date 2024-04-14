@@ -61,7 +61,7 @@ You can view the full documentation of the API as well as interact with all its 
 just as you would on Postman or any other API client.
 
 
-![](zdoc_images/api_screenshot.png)
+![](uploads/api_screenshot.png)
 
 
 ### Authentication and Authorisation.
@@ -118,7 +118,7 @@ The persistence layer is a Postgres database. This handles data query requests f
 
 The gateway interface and application server reside within the same Docker container while the database and web server rest in separate Docker containers. Since all services share a single Docker Compose configuration file, they share the same network within a host OS.
 
-![](zdoc_images/api_architecture.png)
+![](uploads/api_architecture.png)
 
 
 
@@ -133,5 +133,5 @@ This can be fixed by taking the following steps:
 3. Then rerun the docker compose up --build command at the project's root directory.
 (It is a file ending error associated with pushing shell scripts to a git repo from a Windows OS)
 
-![](zdoc_images/shell-script-snapshot.png)
+![](uploads/shell-script-snapshot.png)
 
