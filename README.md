@@ -1,9 +1,13 @@
 # vmbloggr
 
+![](uploads/django+DRF.png)
+
+##
+
 ## A blogger's delight
 
 
-vmbloggr is an API that serves as the backend server for a simple blog reader app. It allows users to 
+Built using a combination of Django and DRF (the Django Rest Framework), vmbloggr is a RESTful API that serves as the backend server for a simple blog reader app. It allows users to 
 * Register and login to the API
 * Create blog posts
 * Get a list of blog posts from the database
@@ -52,8 +56,8 @@ To prevent clashes on port 8000, make sure no other Django app is running on loc
 
 
 ### Documentation
-While the default Django DRF documentation is available, the preference here is for Swagger docs. <br>
-vmblogger relies on Swagger for documentation which can be accessed at
+While the default Django DRF documentation is available, the preference for this project is Swagger docs. <br>
+vmbloggr relies on Swagger for documentation which can be accessed at
 
 ```http://127.0.0.1:8000/api/docs/swagger``` 
 
