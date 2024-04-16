@@ -7,7 +7,7 @@
 ## A blogger's delight
 
 
-Built using a combination of Django and DRF (the Django Rest Framework), vmbloggr is a RESTful API that serves as the backend server for a simple blog reader app. It allows users to 
+Built using a combination of Django and DRF (the Django Rest Framework), vmbloggr is a RESTful API that serves as the backend server for a simple blogging platform. It allows users to 
 * Register and login to the API
 * Create blog posts
 * Get a list of blog posts from the database
