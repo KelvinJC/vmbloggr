@@ -56,11 +56,6 @@ cd vmbloggr
 ```
 docker compose up --build 
 ```
-#### Note:
-Adding the extra flag `-f docker-compose.yml` to the command works as well 
-but since the docker-compose file is bearing the default name - "docker-compose.yml" 
-that is no longer unnecessary
-
 
 ### 4. Usage
 By default, Django apps listen on port 8000 so once the server is running, 
